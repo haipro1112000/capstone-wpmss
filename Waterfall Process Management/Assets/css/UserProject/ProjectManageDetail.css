@@ -1,0 +1,334 @@
+﻿:root {
+    --important--color: #101E38;
+    --white--color: #fff;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Perpetua,Baskerville,Big Caslon,Palatino Linotype,Palatino,URW Palladio L,Nimbus Roman No9 L,serif;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.clear {
+    clear: both;
+}
+/**************************** ID:HEADER *****************************/
+#header {
+    width: 100%;
+    position: relative;
+}
+
+.header__top {
+    background-color: #101E38;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.header__left {
+    width: 70%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.header__logo {
+    width: 200px;
+    margin-left: 20px;
+}
+
+.header__name-logo {
+    color: white;
+    font-weight: 700;
+    font-size: 2.6rem;
+}
+
+.header__right {
+    width: 40%;
+    display: flex;
+    color: white;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+}
+
+.info-user {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.info-people {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-user {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.name-user {
+    padding: 10px 10px 0px;
+    font-size: 1.4rem;
+    color: rgb(255, 255, 255);
+}
+
+.role-user {
+    font-size: 1.4rem;
+}
+
+.info__icon-logout {
+    font-size: 2.6rem;
+    color: white;
+    margin: 0px 20px;
+}
+
+.icon-logout:hover {
+    cursor: pointer;
+}
+
+
+.header__name-project p {
+    margin-bottom: 0px;
+    background-color: #cccc;
+    font-size: 2.4em;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/***************************************************** HEADER_MENU ******************************************************/
+.header__menu {
+    background-color: #172B5B;
+    height: 65px;
+}
+
+    .header__menu ul {
+        display: flex;
+        justify-content: flex-start;
+        line-height: 65px;
+        list-style-type: none;
+    }
+
+        .header__menu ul li {
+            width: 15%;
+            text-align: center;
+        }
+
+            .header__menu ul li:hover a {
+                background-color: #fff;
+                color: #101E38;
+            }
+
+        .header__menu ul .header_menu_icon {
+            color: white;
+            margin-right: 5px;
+            font-size: 40px;
+        }
+
+        .header__menu ul li a {
+            font-size: 1.6rem;
+            display: block;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+        }
+
+/***************************************************** HEADER_MENU-MULTILEVEL ******************************************************/
+.header__menu-Multilevel {
+    background-color: #2A4B9A;
+    height: 50px;
+    width: 100%;
+}
+
+    .header__menu-Multilevel ul {
+        display: flex;
+        line-height: 50px;
+        list-style: none;
+    }
+
+    .header__menu-Multilevel li {
+        width: 14.29%;
+        text-align: center;
+    }
+
+        .header__menu-Multilevel li:hover > a {
+            background-color: #cccccc;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+        }
+
+        .header__menu-Multilevel li:hover .subNav {
+            display: block;
+        }
+
+    .header__menu-Multilevel a {
+        text-decoration: none;
+        display: block;
+        font-size: 1.6rem;
+        color: var(--white--color);
+    }
+
+    .header__menu-Multilevel .subNav {
+        display: none;
+        z-index: 1;
+        width: 14.29%;
+        min-width: 160px;
+        position: absolute;
+        top: 100%;
+        background-color: #2A4B9A;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+.subNav li {
+    width: 100%;
+    text-align: center;
+}
+
+.subNav a {
+    color: rgb(255, 255, 255);
+    font-size: 1.6rem;
+}
+
+
+.header_menu-Multilevel .subNav li:hover > li:hover > a,
+.header_menu-Multilevel .subNav li:hover {
+    background-color: #cccccc;
+    color: white;
+}
+
+.slide img {
+    width: 100%;
+    height: 700px;
+}
+
+/* ------------------------------------------- FOOTER ------------------------------------ */
+#footer {
+    /* position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    background: #172b5b;
+    background: -webkit-linear-gradient(59deg, #2A4B9A, #172b5b);
+    background: linear-gradient(59deg, #2A4B9A, #172b5b);
+    color: white;
+    margin-top: 60px;
+}
+
+    #footer a {
+        color: #fff;
+        font-size: 14px;
+        transition-duration: 0.2s;
+    }
+
+        #footer a:hover {
+            color: #FA944B;
+            text-decoration: none;
+        }
+
+.copy {
+    font-size: 1.4rem;
+    padding: 10px;
+    border-top: 1px solid #FFFFFF;
+}
+
+.footer-middle {
+    padding-top: 2em;
+    color: white;
+}
+
+
+/*SOCİAL İCONS*/
+
+/* footer social icons */
+
+ul.social-network {
+    list-style: none;
+    display: inline;
+    margin-left: 0 !important;
+    padding: 0;
+}
+
+    ul.social-network li {
+        display: inline;
+        margin: 0 5px;
+    }
+
+
+/* footer social icons */
+
+.social-network a.icoFacebook:hover {
+    background-color: #172b5b;
+}
+
+.social-network a.icoLinkedin:hover {
+    background-color: #007bb7;
+}
+
+    .social-network a.icoFacebook:hover i,
+    .social-network a.icoLinkedin:hover i {
+        color: #fff;
+    }
+
+.social-network a.socialIcon:hover,
+.socialHoverClass {
+    color: #44BCDD;
+}
+
+.social-circle li a {
+    display: inline-block;
+    position: relative;
+    margin: 0 auto 0 auto;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+}
+
+.social-circle li i {
+    margin: 0;
+    line-height: 30px;
+    text-align: center;
+}
+
+.social-circle li a:hover i,
+.triggeredHover {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -ms--transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.social-circle i {
+    color: #595959;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    transition: all 0.8s;
+}
+
+.social-network a {
+    background-color: #F9F9F9;
+}

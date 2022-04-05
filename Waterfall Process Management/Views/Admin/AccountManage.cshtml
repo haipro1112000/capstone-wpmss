@@ -1,0 +1,461 @@
+﻿
+@{
+    ViewBag.Title = "AccountManage";
+    Layout = "~/Views/Shared/_AdminMaster.cshtml";
+    @* sweetalert *@
+    <script src="~/Assets/sweetalert2-11.1.9/package/dist/sweetalert2.all.min.js"></script>
+    <link href="~/Assets/sweetalert2-11.1.9/package/dist/sweetalert2.min.css" rel="stylesheet" />
+}
+
+<!--------------------------------------------------------- CONTAINER ----------------------------------------------------------->
+<div id="container">
+    <!--------------------------------------------------------- CONTENT ----------------------------------------------------------->
+    <div id="content">
+        <h2 class="title">Account Manage</h2>
+        <form action="#">
+            <div>
+                <label for="fullName">Full Name</label>
+                <input type="text" id="Fullname" placeholder="Please enter full name...">
+            </div>
+            <div>
+                <label for="userName">User Name</label>
+                <input type="text" id="Username" placeholder="Please enter user name...">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="Password" placeholder="Please enter password...">
+                <span class="eye">
+                    <i id="hide1" class="fa-solid fa-eye"></i>
+                    <i id="hide2" class="fa-solid fa-eye-slash"></i>
+                </span>
+            </div>
+            <div class="content__tools">
+                <div class="btn-acc" id="btnAdd" onclick="addAccount()">Add</div>
+                <div class="btn-acc" id="btnUpdate" onclick="UpdateAccount()">Update</div>
+                <div class="btn-acc" onclick="Cancel()">Cancel</div>
+            </div>
+        </form>
+    </div>
+    <!--------------------------------------------------------- SIDEBAR ----------------------------------------------------------->
+    <div id="sidebar">
+        <div class="sidebar__search">
+            <input type="text" id="search" placeholder="Enter user name...">
+            <button type="submit" id="btn-search">Search</button>
+        </div>
+        <table id="AccountTable" class="table table-striped table-hover">
+            <thead>
+                <tr class="header-table">
+                    <th style="width: 10%;">STT</th>
+                    <th style="width: 20%;">Full Name</th>
+                    <th style="width: 20%;">User Name</th>
+                    <th style="width: 20%;">Password</th>
+                    <th style="width: 10%;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @* Đổ dữ liệu lên Bảng *@
+                @foreach (DatabaseWPMSS.ACCOUNT item in Model)
+                {
+                    <tr id="tr_@item.Acc_ID">
+                        <td class="stt" style="text-align:center;"></td>
+                        <td>@item.MemberName</td>
+                        <td>@item.Username</td>
+                        <td>@item.Passwords</td>
+                        <td>
+                            <a href="javascript:EditAccount('@item.Acc_ID','@item.MemberName','@item.Username','@item.Passwords')" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">edit</i></a>
+                            <a href="javascript:Delete('@item.Acc_ID')" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">delete</i></a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+@* table *@
+<!-- create pagination for job table -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js "></script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#AccountTable').DataTable({
+            ordering: false,
+            searching: false,
+            lengthMenu: [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+        })
+    })
+</script>
+
+<script type="text/javascript">
+@* eyes *@
+
+    const eye = document.querySelector(".eye");
+    eye.addEventListener("click", eyeFunction)
+    function eyeFunction() {
+        const passwordjs = document.querySelector("#Password");
+        const hide1 = document.querySelector("#hide1");
+        const hide2 = document.querySelector("#hide2");
+        if (passwordjs.type === 'password') {
+            passwordjs.type = 'text';
+            hide1.style.display = 'block';
+            hide2.style.display = 'none';
+        }
+        else {
+            passwordjs.type = 'password';
+            hide1.style.display = 'none';
+            hide2.style.display = 'block';
+        }
+    }
+</script>
+
+<script type="text/javascript">
+
+    // khai bao chung
+    var EditId = '';
+    document.getElementById("btnUpdate").disabled = true;
+
+    // toast
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+     // ADD 1 ACCOUNT
+    function addAccount() {
+        var fullname = document.getElementById("Fullname").value;
+        var username = document.getElementById("Username").value;
+        var password = document.getElementById("Password").value;
+
+        //lấy dữ liệu username
+        var userlist = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.Username));
+        var usernamelist = []
+        for (var i = 0; i < userlist.length; i++) {
+            usernamelist.push(userlist[i].Username)
+        }
+        // kiểm tra trường hợp để trống, chưa nhập đủ thông tin mà click add
+        if (fullname == '' || username == '' || password == '') {
+            Toast.fire({
+                text: 'Enter in full, Please !',
+                icon: 'warning',
+                iconColor: 'red',
+                confirmButtonColor: '#457b9d'
+            })
+            return
+        }
+
+        if (username.length < 5 || password.length < 6) {
+            Toast.fire({
+                text: 'Enter Username >5 & Password >6 !',
+                icon: 'warning',
+                iconColor: 'red',
+                confirmButtonColor: '#457b9d'
+            })
+            return
+        }
+        //kiểm tra username tồn tại
+        if (usernamelist.indexOf(username) != -1) {
+            Toast.fire({
+                text: 'User is exist',
+                icon: 'warning',
+                iconColor: 'red',
+                confirmButtonColor: '#457b9d'
+            })
+            return
+        }
+        else {
+            // tạo form data
+            var form = new FormData();
+
+            // cho dữ liệu vào form
+            form.append("fullname", fullname);
+            form.append("username", username);
+            form.append("password", password);
+
+            // tạo xhr giống json
+            // XMLHttpRequest() : để lấy yêu cầu của người dùng
+            var xhr = new XMLHttpRequest();
+            // mở cái API và đường dẫn
+            xhr.open("POST", domain + '/Admin/AddAccount', true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var kq = xhr.responseText;
+                    var js = JSON.parse(kq);
+                    if (js.Data.status == "OK") {
+                        let timerInterval
+                        Swal.fire({
+                            title: 'Account Successful ...',
+                            color: 'screen',
+                            icon:'success',
+                            //html: 'I will close in <b></b> milliseconds.',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            didOpen: () => {
+                                Swal.showLoading()
+                                const b = Swal.getHtmlContainer().querySelector('b')
+                                timerInterval = setInterval(() => {
+                                    b.textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                            }
+                        }).then((result) => {
+                            /* Read more about handling dismissals below */
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                location.reload();
+                            }
+                        })
+                    }
+                    else {
+                        let timerInterval
+                        Swal.fire({
+                            title: 'Error !!!',
+                            timer: 2000,
+                            timerProgressBar: true,
+                            didOpen: () => {
+                                Swal.showLoading()
+                                const b = Swal.getHtmlContainer().querySelector('b')
+                                timerInterval = setInterval(() => {
+                                    b.textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                            }
+                        }).then((result) => {
+                            /* Read more about handling dismissals below */
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                location.reload();
+                            }
+                        })
+                    }
+                }
+            }
+            xhr.send(form);
+        }
+        }
+    // END ADD 1ACCOUNT
+
+    // Để update đc thì ta phải click Edit đc, nên ta viết hàm EDIT
+    // EDIT 1 ACCOUNT
+    function EditAccount(accid, fullname, username, password) {
+        Swal.fire({
+            /* title: "See and Edit",*/
+            text: "Do you want to edit account",
+            icon: 'question',
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonText: 'Yes',
+            confirmButtonColor: '#457b9d',
+            cancelButtonText: 'No',
+            cancelButtonColor: '#457b9d',
+            iconColor: '#457b9d',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                EditId = accid
+                document.getElementById('Fullname').value = fullname;
+                document.getElementById('Username').value = username;
+                document.getElementById('Password').value = password;
+                document.getElementById("btnAdd").disabled = true;
+                document.getElementById("Username").disabled = true;
+                document.getElementById("btnUpdate").disabled = false;
+            }
+        })
+    }
+
+    // UPDATE 1 ACCOUNT
+    function UpdateAccount() {
+        // lấy dữ liệu từ UI
+        var fullname = document.getElementById("Fullname").value;
+        var username = document.getElementById("Username").value;
+        var password = document.getElementById("Password").value;
+
+        // kiểm tra trường hợp để trống, chưa nhập đủ thông tin mà click add
+        if (fullname == '' || username == '' || password == '') {
+            Toast.fire({
+                text: 'Enter in full, Please !',
+                icon: 'warning',
+                iconColor: 'red',
+                confirmButtonColor: '#457b9d'
+            })
+            return
+        }
+        // tao sweetAlert
+        Swal.fire({
+            /*title: "Update Job",*/
+            text: "You want update account?",
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            icon: 'question',
+            iconColor: '#457b9d',
+            confirmButtonColor: '#457b9d',
+            cancelButtonColor: '#457b9d'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // tạo form data
+                var form = new FormData();
+                // cho dữ liệu vào form
+                form.append("accid", EditId);
+                form.append("fullname", fullname);
+                form.append("username", username);
+                form.append("password", password);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", domain + '/Admin/UpdateAccount', true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var kq = xhr.responseText;
+                        var js = JSON.parse(kq);
+                        if (js.Data.status == "OK") {
+
+                            //thay the row cu
+                            $('#tr_' + EditId + ' .Fullname').html(fullname);
+                            $('#tr_' + EditId + ' .Username').html(username);
+                            $('#tr_' + EditId + ' .Password').html(password);
+
+                            document.getElementById('Fullname').value = '';
+                            document.getElementById('Username').value = '';
+                            document.getElementById('Password').value = '';
+
+                            document.getElementById("btnAdd").disabled = false;
+                            document.getElementById("Username").disabled = false;
+                            // thong bao update thanh cong
+                            let timerInterval
+                            Swal.fire({
+                                title: 'Update',
+                                text: 'Successful',
+                                icon: 'success',
+                                color: 'screen',
+                                //html: 'I will close in <b></b> milliseconds.',
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                    const b = Swal.getHtmlContainer().querySelector('b')
+                                    timerInterval = setInterval(() => {
+                                        b.textContent = Swal.getTimerLeft()
+                                    }, 100)
+                                },
+                                willClose: () => {
+                                    clearInterval(timerInterval)
+                                }
+                            }).then((result) => {
+                                /* Read more about handling dismissals below */
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    location.reload();
+                                }
+                            })
+                        }
+                        else {
+                            Toast.fire({
+                                text: 'Error',
+                                icon: 'Update error',
+                                iconColor: 'red',
+
+                            })
+                        }
+                    }
+                }
+                xhr.send(form);
+            }
+        })
+    }
+    // end update
+
+    function Delete(idAcc) {
+
+        Swal.fire({
+            /* title: "Delete",*/
+            text: "Do you want to delete this account ?",
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            icon: 'question',
+            iconColor: '#457b9d',
+            confirmButtonColor: '#457b9d',
+            cancelButtonColor: '#457b9d',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var form = new FormData();
+                form.append('idAcc', idAcc);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", domain + '/Admin/DeleteAccount', true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var kq = xhr.responseText;
+                        var js = JSON.parse(kq);
+                        if (js.Data.status == "OK") {
+                            $('#tr_' + idAcc).remove();
+
+                            let timerInterval
+                            Swal.fire({
+                                title: ' Delete Successful !!!',
+                                //html: 'I will close in <b></b> milliseconds.',
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                    const b = Swal.getHtmlContainer().querySelector('b')
+                                    timerInterval = setInterval(() =>
+                                    {
+                                        b.textContent = Swal.getTimerLeft()
+                                    }, 100)
+                                },
+                                willClose: () => {
+                                    clearInterval(timerInterval)
+                                }
+                            }).then((result) => {
+                                /* Read more about handling dismissals below */
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    location.reload();
+                                }
+                            })
+                        }
+                        else {
+                            Toast.fire({
+                                text: 'Delete Erorr',
+                                icon: 'error',
+                                iconColor: 'red',
+                            })
+                        }
+                    }
+                }
+                xhr.send(form);
+            }
+        })
+    }
+    // end function Delete
+
+    //xu ly button cancel
+    function Cancel() {
+        document.getElementById('Fullname').value = '';
+        document.getElementById('Username').value = '';
+        document.getElementById('Password').value = '';
+        document.getElementById("Username").disabled = false;
+
+        /*location.reload();*/
+    }// end function Cancel
+
+</script>
+
+

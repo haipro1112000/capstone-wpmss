@@ -1,0 +1,81 @@
+﻿
+
+@model List<DatabaseWPMSS.PROJECT>
+@* xử lí datetime *@
+@using System.Globalization; 
+
+@{
+    ViewBag.Title = "ProjectManage";
+    Layout = "~/Views/Shared/_UserMaster.cshtml";
+    @* sweetalert *@
+    <script src="~/Assets/sweetalert2-11.4.7/package/dist/sweetalert2.all.min.js"></script>
+
+}
+
+<!--------------------------------------------------------- CONTAINER ----------------------------------------------------------->
+<div id="container">
+    <div class="form-project-manage">
+        <div class="title-form">
+            <h1 class="title-form-project-manage">Project Management</h1>
+        </div>
+        <div class="search-form">
+            <div class="search">
+                <input id="search-input" type="search" class="form-control" placeholder="Enter Project Name" />
+            </div>
+            <button id="search-button" type="button" class="btn btn-primary">Search</button>
+        </div>
+        <div class="form-content-table">
+            <table id="ProjectTable" class="table table-striped table-hover">
+                <thead>
+                    <tr class="header-table">
+                        <th>No</th>
+                        <th>Project Name</th>
+                        <th>Project Type</th>
+                        <th>Project Manage</th>
+                        <th>Estimated Start Date</th>
+                        <th>Estimated End Date</th>
+                        <th>Project Description </th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var PROJECT in Model)
+                    {
+                        <tr>
+                            <td>@PROJECT.Project_id</td>
+                            <td><a href="#">@PROJECT.Project_Name</a></td>
+                            <td>@PROJECT.Project_Type</td>
+                            <td>@PROJECT.Project_Manager</td>
+                            <td>@PROJECT.Estimated_Start.ToString("d", DateTimeFormatInfo.InvariantInfo)</td>
+                            <td>@PROJECT.Estimated_End.ToString("d", DateTimeFormatInfo.InvariantInfo)</td>
+                            <td>@PROJECT.Project_Des</td>
+                            <td>Progress</td>
+                            <td>
+                                <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
+                                <a href="@Url.Action("RedirectAction","UserProject",new { Project_id = @PROJECT.Project_id })" class="move" title="Move" data-toggle="tooltip"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#ProjectTable').DataTable({
+            ordering: false,
+            searching: false,
+            lengthMenu: [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+        });
+    });
+
+    let error = `@ViewBag.result`
+    if (error == '1') {
+        alert('sai sai');
+    }
+
+
+</script>
+

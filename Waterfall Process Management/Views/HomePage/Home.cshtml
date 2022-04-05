@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="~/Assets/css/Homepage/Home.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+          integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Link ho tru footer -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    @* domain *@
+    <script type="text/javascript" src="@Request.Url.Scheme://@Request.Url.Host:44381/Scripts/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        var domain = '@Request.Url.Scheme://@Request.Url.Host:44381';
+    </script>
+
+</head>
+
+<body>
+        <div id="header">
+            <div class="header__top">
+                <div class="header__left">
+                    <img class="header__logo" src="~/Assets/img/logo.png" alt="Logo">
+                    <h1 class="header__name-logo">Waterfall Process Management</h1>
+                </div>
+                <div class="header__right">
+                    <nav class="header__right-menu">
+                        <ul>
+                            <li>
+                                <a><i class="fa-solid fa-house"></i>@Html.ActionLink(" Home", "Home", "HomePage")</a>
+                            </li>
+                            <li>
+                                <a> <i class="fa-solid fa-arrow-right-to-bracket"></i>@Html.ActionLink(" Login","Login","Authentication") </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div id="container">
+            <div id="slider">
+                <div class="slider__row">
+                    <div class="slider--img">
+                        <img src="~/Assets/img/undraw_services_re_hu5n.svg" alt="">
+                    </div>
+                    <div class="slider--slogan">
+                        <h2> Waterfall model</h2>
+                        <p>
+                            A model of the software development process in which the development process looks like a
+                            flow, with phases being executed in strict order and with no backtracking or jumping.
+                        </p>
+                        <button> <a href="#content">Try it</a> </button>
+                    </div>
+                </div>
+            </div>
+            <div id="content">
+                <div id="content__information">
+                    <h2 class="section--heading">Introduce sequential stages in the model!!!</h2>
+                    <p class="section-sub-heading">(There are 7 processes in Waterfall)</p>
+                    <div class="section--text">
+                        <div class="section--img">
+                            <img src="~/Assets/img/waterfall.gif" alt="Image Waterfall">
+                        </div>
+                        <p class="about--text">
+                            <b>Requirement Gathering and analysis </b>
+                            <br>
+                            − All possible requirements of the system to be developed are captured in this phase and
+                            documented in a requirement specification document.
+                            <br>
+                            <b>System Design </b>
+                            <br>
+                            − The requirement specifications from first phase are studied in this phase and the system
+                            design is prepared. This system design helps in specifying hardware and system requirements
+                            and helps in defining the overall system architecture.
+                            <br>
+                            <b> Implementation </b>
+                            <br>
+                            − With inputs from the system design, the system is first developed in small programs called
+                            units, which are integrated in the next phase. Each unit is developed and tested for its
+                            functionality, which is referred to as Unit Testing.
+                            <br>
+                            <b>Integration and Testing </b>
+                            <br>
+                            − All the units developed in the implementation phase are integrated into a system after
+                            testing of each unit. Post integration the entire system is tested for any faults and
+                            failures.
+                            <br>
+                            <b>Deployment of system </b>
+                            <br>
+                            − Once the functional and non-functional testing is done; the product is deployed in the
+                            customer environment or released into the market.
+                            <br>
+                            <b>Maintenance </b>
+                            <br>
+                            − There are some issues which come up in the client environment. To fix those issues,
+                            patches are released. Also to enhance the product some better versions are released.
+                            Maintenance is done to deliver these changes in the customer environment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="contact">
+                <div class="contact--section">
+                    <h2 class="section--heading text--white">
+                        Contact
+                    </h2>
+                    <form action="#">
+                        <div class="contact__input">
+                            <input type="text" id="contact-fullname" placeholder="Full Name">
+                            <input type="text" id="contact-email" placeholder="Email">
+                        </div>
+                        <div class="clear"></div>
+                        <div class="contact__textarea">
+                            <textarea id="" cols="30" rows="10" placeholder="Message"></textarea>
+                        </div>
+                        <button type="submit" id="">Send</button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="clear"></div>
+            <div id="address">
+                <h2 class="section--heading">Address</h2>
+                <ul>
+                    <li><b>Address</b>: Duy Son, Duy Xuyen district, Quang Nam</li>
+                    <li><b>Email</b> : stscompany@gmail.com </li>
+                    <li><b>Phone</b> : (+84)70 796 0071</li>
+                </ul>
+            </div>
+
+        </div>
+        <div id="footer" class="mainfooter" role="contentinfo">
+            <div class="footer-middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <!--Column1-->
+                            <div class="footer-pad">
+                                <h4>Branches</h4>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Phan Chu Trinh, Binh Thanh district, HCM City</a></li>
+                                    <li><a href="#">Tran Phu, Phu, Phuoc Ninh district, Da Nang City</a></li>
+                                    <li><a href="#">Mac Thai To, Yen Hoa distrcit, Ha Noi City</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <!--Column1-->
+                            <div class="footer-pad">
+                                <h4>Contact us</h4>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Email: stscompany@gmail.com</a></li>
+                                    <li><a href="#">Phone: (+84)123654789</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <!--Column1-->
+                            <div class="footer-pad">
+                                <h4>Teams</h4>
+                                <ul class="list-unstyled" style="text-align:left; margin-left:60px;">
+                                    <li><a href="#">Hieu, Nguyen Quang</a></li>
+                                    <li><a href="#">Hai, Nguyen</a></li>
+                                    <li><a href="#">Hoai, Nguyen Bao Dang</a></li>
+                                    <li><a href="#">Long, Huynh Ngoc</a></li>
+                                    <li><a href="#">Tri, Nguyen</a></li>
+                                    <li>
+                                        <a href="#"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Follow Us</h4>
+                            <ul class="social-network social-circle social-icon ">
+                                <li>
+                                    <a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="icoYoutube" title="Youtube"><i class="fa fa-youtube"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 copy">
+                            <p class="text-center">&copy; Copyright 2022 - STS Team - C2SE.10 .</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+I:\Capstone2\CODE\Waterfall Process Management\DatabaseWPMSS\bin\Debug\DatabaseWPMSS.dll.config
+I:\Capstone2\CODE\Waterfall Process Management\DatabaseWPMSS\bin\Debug\DatabaseWPMSS.dll
+I:\Capstone2\CODE\Waterfall Process Management\DatabaseWPMSS\bin\Debug\DatabaseWPMSS.pdb
+I:\Capstone2\CODE\Waterfall Process Management\DatabaseWPMSS\bin\Debug\EntityFramework.dll
+I:\Capstone2\CODE\Waterfall Process Management\DatabaseWPMSS\bin\Debug\EntityFramework.SqlServer.dll
+I:\Capstone2\CODE\Waterfall Process Management\DatabaseWPMSS\bin\Debug\EntityFramework.xml
+I:\Capstone2\CODE\Waterfall Process Management\DatabaseWPMSS\bin\Debug\EntityFramework.SqlServer.xml
+I:\Capstone2\CODE\Waterfall Process Management\DatabaseWPMSS\obj\Debug\DatabaseWPMSS.csproj.CoreCompileInputs.cache
+I:\Capstone2\CODE\Waterfall Process Management\DatabaseWPMSS\obj\Debug\DatabaseWPMSS.csproj.CopyComplete
+I:\Capstone2\CODE\Waterfall Process Management\DatabaseWPMSS\obj\Debug\DatabaseWPMSS.dll
+I:\Capstone2\CODE\Waterfall Process Management\DatabaseWPMSS\obj\Debug\DatabaseWPMSS.pdb

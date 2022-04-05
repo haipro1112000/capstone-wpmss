@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link href="~/Assets/css/Homepage/Login.css" rel="stylesheet" />
+
+    <!-- 2 Link ho tro icon -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript" src="@Request.Url.Scheme://@Request.Url.Host:44381/Scripts/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        var domain = '@Request.Url.Scheme://@Request.Url.Host:44381';
+    </script>
+    @* sweetalert *@
+    <script src="~/Assets/sweetalert2-11.1.9/package/dist/sweetalert2.all.min.js"></script>
+    <link href="~/Assets/sweetalert2-11.1.9/package/dist/sweetalert2.min.css" rel="stylesheet"/>
+
+</head>
+<body>
+        <div id="header">
+            <div class="header__top">
+                <div class="header__left">
+                    <img class="header__logo" src="~/Assets/img/logo.png" alt="Logo">
+                    <h1 class="header__name-logo">Waterfall Process Management</h1>
+                </div>
+                <div class="header__right">
+                    <nav class="header__right-menu">
+                        <ul>
+                            <li>
+                                <a><i class="fa-solid fa-house"></i>@Html.ActionLink(" Home", "Home", "HomePage")</a>
+                            </li>
+                            <li>
+                                <a> <i class="fa-solid fa-arrow-right-to-bracket"></i>@Html.ActionLink(" Login", "Login", "Authentication") </a>
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div id="container">
+            <div id="content">
+                <form action="#">
+                    <p class="title" style="text-align:center;">Welcome to <br /> Waterfall Process Management Support System</p>
+                    <div class="input-field">
+                        <label for="">Username</label>
+                        <input type="text" id="txtUsername" name="userName" placeholder="Enter input username">
+                    </div>
+                    <div class="input-field form-password">
+                        <label for="password">Password</label>
+                        <input type="password" id="txtPassword" name="password" placeholder="Enter input password">
+
+                        <span class="eye">
+                            <i id="hide1" class="fa-solid fa-eye"></i>
+                            <i id="hide2" class="fa-solid fa-eye-slash"></i>
+                        </span>
+                    </div>
+                    <div class="btn">
+                        <div id="login-button" class="btn-login"  style="cursor:pointer;" onclick="Login()">Login</div>
+                    </div>
+                </form>
+            </div>
+            <div id="sidebar">
+                <div class="panel left-panel">
+                    <img class="img" src="~/Assets/img/undraw_programming_re_kg9v.svg" alt="slide">
+                </div>
+            </div>
+        </div>
+
+    @* eyes *@
+    <script>
+        const eye = document.querySelector(".eye");
+        eye.addEventListener("click", eyeFunction)
+        function eyeFunction() {
+            const passwordjs = document.querySelector("#txtPassword");
+            const hide1 = document.querySelector("#hide1");
+            const hide2 = document.querySelector("#hide2");
+            if (passwordjs.type === 'password') {
+                passwordjs.type = 'text';
+                hide1.style.display = 'block';
+                hide2.style.display = 'none';
+            }
+            else {
+                passwordjs.type = 'password';
+                hide1.style.display = 'none';
+                hide2.style.display = 'block';
+            }
+        }
+        // toast
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    </script>
+    
+
+    <script type="text/javascript">
+        var IsRunning = false;
+        // Hàm ni để xử lí khi click button Login
+        function Login() {
+            if (!IsRunning) {
+                IsRunning = true;
+                var username = $('#txtUsername').val();
+                var password = $('#txtPassword').val();
+
+                if (username == '' || password == '') {
+                    Toast.fire({
+                        text: 'Enter Username and Password, Please !!! ',
+                        icon: 'error',
+                        iconColor: 'red',
+                        confirmButtonColor: '#457b9d'
+                    })
+                    IsRunning = false;
+                }
+                else {
+                    // tạo form để liên kết bên controller
+                    var form = new FormData();
+                    // append bỏ dữ liệu vào form
+                    // "username" cái tên ni để gọi qua lại với controller
+                    //username đã khai báo ở trên
+                    form.append("username", username);
+                    form.append("password", password);
+
+                    //khai bao Ajax request
+                    var xhr = new XMLHttpRequest();
+                    //(đây là đường dẫn gọi đến hàm xử lý trong backend)
+                    //
+                    xhr.open("POST", domain + '/Authentication/CheckLogin', true);
+
+                    //khai bao truong hop cho lau qua
+                    xhr.timeout = 30000;
+                    xhr.ontimeout = function () {
+                        Toast.fire({
+                            text: 'Load again web, Please!',
+                            icon: 'warning',
+                            iconColor: '#457b9d',
+                            confirmButtonColor: '#457b9d'
+                        })
+                        IsRunning = false;
+                    }
+                    //xu ly van de
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            //gan content = ket qua tra ve
+                            var content = xhr.responseText;
+                            //chuyen r sang dang json
+                            var js = JSON.parse(content);
+                            if (js.Data.status == "OK1") {
+                                Swal.fire({
+                                    text: 'Hello Admin, successful login !',
+                                    icon: 'success',
+                                    iconColor: 'Screen',
+                                    confirmButtonColor: '#457b9d'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location = '/Admin/AccountManage';
+                                    }
+                                })
+                            }
+                            else {
+                                if (js.Data.status == "OK2") {
+                                    Swal.fire({
+                                        text: 'Hello Users, successful login !',
+                                        icon: 'success',
+                                        iconColor: 'Screen',
+                                        confirmButtonColor: '#457b9d'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location = '/Users/CreateProject';
+                                        }
+                                    })
+                                }
+                                else {
+                                    Swal.fire({
+                                        text: 'Error Username or Password !',
+                                        confirmButtonText: 'Ok',
+                                        icon: 'warning',
+                                        iconColor: 'red',
+                                        confirmButtonColor: '#457b9d'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    })
+                                }
+                            }
+                        }
+                    }
+                    xhr.send(form);
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

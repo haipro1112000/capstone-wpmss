@@ -1,0 +1,511 @@
+﻿
+@{
+    ViewBag.Title = "ProjectPlan";
+    Layout = "~/Views/Shared/_UserProjectMaster.cshtml";
+    <!-- xử lí table thêm row xóa row cho enter project plan -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- bootstrap header, content -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+          integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!--css project plan-->
+    <link href="~/Assets/css/UserProject/EnterProjectPlan.css" rel="stylesheet" />
+
+}
+
+<nav class="header__menu-Multilevel">
+    <ul>
+        <li><a href="#">Requirement</a></li>
+        <li>
+            <a href="#" style="background-color: #fff; color: black;">Analyse <i class="nav-arrow-down fas fa-sort-down "></i></a>
+            <ul class="subNav">
+                <li><a href="#">Requirements</a></li>
+                <li><a href="#">Architecture</a></li>
+                <li><a href="#">Technologies</a></li>
+                <li><a href="#" style="background-color: #fff; color: black;">Project Plan</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Design</a></li>
+        <li><a href="#">Development</a></li>
+        <li><a href="#">Testing</a></li>
+        <li><a href="#">Deployment</a></li>
+        <li><a href="#">Maintenance</a></li>
+    </ul>
+</nav>
+    </div>
+<!--------------------------------------------------------- CONTAINER -------------------------------------------------------->
+<div id="container">
+    <div class="title-page">
+        <h1 class="title-name-page">Project Plan</h1>
+    </div>
+    <!-- giai đoạn requirement -->
+    <div class="requirement-form">
+        <div class="title-form">
+            <h1 class="title-form-name">Requirement Phase</h1>
+        </div>
+
+        <div class="input-form">
+            <form>
+                <input type="text" class="wbs-1" placeholder="Please enter WBS">
+                <input type="text" class="taskname-1" placeholder="Please enter Task Name">
+                <input type="text" class="duration-1" placeholder="Please enter Duration">
+                <input type="date" class="startdate-1">
+                <input type="date" class="finishdate-1">
+                <select class="assign-1">
+                    <option>Quang Hiếu</option>
+                    <option>Nguyễn Hải</option>
+                    <option>Bảo Hoài</option>
+                    <option>Nguyễn Long</option>
+                    <option>Nguyễn Trí</option>
+                </select>
+                <button type="button" class="add-row-1">Add Row</button>
+                <button type="button" class="delete-row-1">Delete Row</button>
+            </form>
+        </div>
+
+        <div class="table-content-form">
+            <table id="requirement" class="table table-striped table-hover">
+                <thead>
+                    <tr class="header-table">
+                        <th style="width: 10%;">WBS</th>
+                        <th style="width: 20%;">Task Name</th>
+                        <th style="width: 15%;">Duration (day)</th>
+                        <th style="width: 20%;">Start Date</th>
+                        <th style="width: 20%;">Finish Date</th>
+                        <th style="width: 10%;">Assign To</th>
+                        <th style="width: 5%;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- giai đoạn analyse -->
+    <div class="analyse-form">
+        <div class="title-form">
+            <h1 class="title-form-name">Analyse Phase</h1>
+        </div>
+
+        <div class="input-form">
+            <form>
+                <input type="text" class="wbs-2" placeholder="Please enter WBS">
+                <input type="text" class="taskname-2" placeholder="Please enter Task Name">
+                <input type="text" class="duration-2" placeholder="Please enter Duration">
+                <input type="date" class="startdate-2">
+                <input type="date" class="finishdate-2">
+                <select class="assign-2">
+                    <option>Quang Hiếu</option>
+                    <option>Nguyễn Hải</option>
+                    <option>Bảo Hoài</option>
+                    <option>Nguyễn Long</option>
+                    <option>Nguyễn Trí</option>
+                </select>
+                <button type="button" class="add-row-2">Add Row</button>
+                <button type="button" class="delete-row-2">Delete Row</button>
+            </form>
+        </div>
+        <div class="table-content-form">
+            <table id="analyse" class="table table-striped table-hover">
+                <thead>
+                    <tr class="header-table">
+                        <th style="width: 10%;">WBS</th>
+                        <th style="width: 20%;">Task Name</th>
+                        <th style="width: 15%;">Duration (day)</th>
+                        <th style="width: 20%;">Start Date</th>
+                        <th style="width: 20%;">Finish Date</th>
+                        <th style="width: 10%;">Assign To</th>
+                        <th style="width: 5%;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- giai đoạn design -->
+    <div class="design-form">
+        <div class="title-form">
+            <h1 class="title-form-name">Design Phase</h1>
+        </div>
+
+        <div class="input-form">
+            <form>
+                <input type="text" class="wbs-3" placeholder="Please enter WBS">
+                <input type="text" class="taskname-3" placeholder="Please enter Task Name">
+                <input type="text" class="duration-3" placeholder="Please enter Duration">
+                <input type="date" class="startdate-3">
+                <input type="date" class="finishdate-3">
+                <select class="assign-3">
+                    <option>Quang Hiếu</option>
+                    <option>Nguyễn Hải</option>
+                    <option>Bảo Hoài</option>
+                    <option>Nguyễn Long</option>
+                    <option>Nguyễn Trí</option>
+                </select>
+                <button type="button" class="add-row-3">Add Row</button>
+                <button type="button" class="delete-row-3">Delete Row</button>
+            </form>
+        </div>
+        <div class="table-content-form">
+            <table id="design" class="table table-striped table-hover">
+                <thead>
+                    <tr class="header-table">
+                        <th style="width: 10%;">WBS</th>
+                        <th style="width: 20%;">Task Name</th>
+                        <th style="width: 15%;">Duration (day)</th>
+                        <th style="width: 20%;">Start Date</th>
+                        <th style="width: 20%;">Finish Date</th>
+                        <th style="width: 10%;">Assign To</th>
+                        <th style="width: 5%;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- giai đoạn development -->
+    <div class="development-form">
+        <div class="title-form">
+            <h1 class="title-form-name">Development Phase</h1>
+        </div>
+
+        <div class="input-form">
+            <form>
+                <input type="text" class="wbs-4" placeholder="Please enter WBS">
+                <input type="text" class="taskname-4" placeholder="Please enter Task Name">
+                <input type="text" class="duration-4" placeholder="Please enter Duration">
+                <input type="date" class="startdate-4">
+                <input type="date" class="finishdate-4">
+                <select class="assign-4">
+                    <option>Quang Hiếu</option>
+                    <option>Nguyễn Hải</option>
+                    <option>Bảo Hoài</option>
+                    <option>Nguyễn Long</option>
+                    <option>Nguyễn Trí</option>
+                </select>
+                <button type="button" class="add-row-4">Add Row</button>
+                <button type="button" class="delete-row-4">Delete Row</button>
+            </form>
+        </div>
+        <div class="table-content-form">
+            <table id="development" class="table table-striped table-hover">
+                <thead>
+                    <tr class="header-table">
+                        <th style="width: 10%;">WBS</th>
+                        <th style="width: 20%;">Task Name</th>
+                        <th style="width: 15%;">Duration (day)</th>
+                        <th style="width: 20%;">Start Date</th>
+                        <th style="width: 20%;">Finish Date</th>
+                        <th style="width: 10%;">Assign To</th>
+                        <th style="width: 5%;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- giai đoạn testing -->
+    <div class="testing-form">
+        <div class="title-form">
+            <h1 class="title-form-name">Testing Phase</h1>
+        </div>
+
+        <div class="input-form">
+            <form>
+                <input type="text" class="wbs-5" placeholder="Please enter WBS">
+                <input type="text" class="taskname-5" placeholder="Please enter Task Name">
+                <input type="text" class="duration-5" placeholder="Please enter Duration">
+                <input type="date" class="startdate-5">
+                <input type="date" class="finishdate-5">
+                <select class="assign-5">
+                    <option>Quang Hiếu</option>
+                    <option>Nguyễn Hải</option>
+                    <option>Bảo Hoài</option>
+                    <option>Nguyễn Long</option>
+                    <option>Nguyễn Trí</option>
+                </select>
+                <button type="button" class="add-row-5">Add Row</button>
+                <button type="button" class="delete-row-5">Delete Row</button>
+            </form>
+        </div>
+        <div class="table-content-form">
+            <table id="testing" class="table table-striped table-hover">
+                <thead>
+                    <tr class="header-table">
+                        <th style="width: 10%;">WBS</th>
+                        <th style="width: 20%;">Task Name</th>
+                        <th style="width: 15%;">Duration (day)</th>
+                        <th style="width: 20%;">Start Date</th>
+                        <th style="width: 20%;">Finish Date</th>
+                        <th style="width: 10%;">Assign To</th>
+                        <th style="width: 5%;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- giai đoạn deployment -->
+    <div class="deployment-form">
+        <div class="title-form">
+            <h1 class="title-form-name">Deployment Phase</h1>
+        </div>
+
+        <div class="input-form">
+            <form>
+                <input type="text" class="wbs-6" placeholder="Please enter WBS">
+                <input type="text" class="taskname-6" placeholder="Please enter Task Name">
+                <input type="text" class="duration-6" placeholder="Please enter Duration">
+                <input type="date" class="startdate-6">
+                <input type="date" class="finishdate-6">
+                <select class="assign-6">
+                    <option>Quang Hiếu</option>
+                    <option>Nguyễn Hải</option>
+                    <option>Bảo Hoài</option>
+                    <option>Nguyễn Long</option>
+                    <option>Nguyễn Trí</option>
+                </select>
+                <button type="button" class="add-row-6">Add Row</button>
+                <button type="button" class="delete-row-6">Delete Row</button>
+            </form>
+        </div>
+        <div class="table-content-form">
+            <table id="deployment" class="table table-striped table-hover">
+                <thead>
+                    <tr class="header-table">
+                        <th style="width: 10%;">WBS</th>
+                        <th style="width: 20%;">Task Name</th>
+                        <th style="width: 15%;">Duration (day)</th>
+                        <th style="width: 20%;">Start Date</th>
+                        <th style="width: 20%;">Finish Date</th>
+                        <th style="width: 10%;">Assign To</th>
+                        <th style="width: 5%;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- giai đoạn maintenance -->
+    <div class="maintenance-form">
+        <div class="title-form">
+            <h1 class="title-form-name">Maintenance Phase</h1>
+        </div>
+
+        <div class="input-form">
+            <form>
+                <input type="text" class="wbs-7" placeholder="Please enter WBS">
+                <input type="text" class="taskname-7" placeholder="Please enter Task Name">
+                <input type="text" class="duration-7" placeholder="Please enter Duration">
+                <input type="date" class="startdate-7">
+                <input type="date" class="finishdate-7">
+                <select class="assign-7">
+                    <option>Quang Hiếu</option>
+                    <option>Nguyễn Hải</option>
+                    <option>Bảo Hoài</option>
+                    <option>Nguyễn Long</option>
+                    <option>Nguyễn Trí</option>
+                </select>
+                <button type="button" class="add-row-7">Add Row</button>
+                <button type="button" class="delete-row-7">Delete Row</button>
+            </form>
+        </div>
+        <div class="table-content-form">
+            <table id="maintenance" class="table table-striped table-hover">
+                <thead>
+                    <tr class="header-table">
+                        <th style="width: 10%;">WBS</th>
+                        <th style="width: 20%;">Task Name</th>
+                        <th style="width: 15%;">Duration (day)</th>
+                        <th style="width: 20%;">Start Date</th>
+                        <th style="width: 20%;">Finish Date</th>
+                        <th style="width: 10%;">Assign To</th>
+                        <th style="width: 5%;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-btn">
+        <button class="button-left" type="submit">Save</button>
+        <button class="button-right" type="submit">Cancel</button>
+    </div>
+</div>
+<script type="text/javascript">
+    // add data cho table requirement
+    $(document).ready(function () {
+        $(".add-row-1").click(function () {
+            var wbs = $(".wbs-1").val();
+            var taskname = $(".taskname-1").val();
+            var duration = $(".duration-1").val();
+            var startdate = $(".startdate-1").val();
+            var finishdate = $(".finishdate-1").val();
+            var assign = $(".assign-1").val();
+            var markup = "<tr><td>" + wbs + "</td><td>" + taskname + "</td><td>" + duration + "</td><td>" + startdate + "</td><td>" + finishdate + "</td><td>" + assign + "</td><td><input type='checkbox' name='record'></td></tr>";
+            $("#requirement tbody").append(markup);
+        });
+
+        // Find and remove selected table rows
+        $(".delete-row-1").click(function () {
+            $("#requirement tbody").find('input[name="record"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
+    // add data cho table analyse
+    $(document).ready(function () {
+        $(".add-row-2").click(function () {
+            var wbs = $(".wbs-2").val();
+            var taskname = $(".taskname-2").val();
+            var duration = $(".duration-2").val();
+            var startdate = $(".startdate-2").val();
+            var finishdate = $(".finishdate-2").val();
+            var assign = $(".assign-2").val();
+            var markup = "<tr><td>" + wbs + "</td><td>" + taskname + "</td><td>" + duration + "</td><td>" + startdate + "</td><td>" + finishdate + "</td><td>" + assign + "</td><td><input type='checkbox' name='record'></td></tr>";
+            $("#analyse tbody").append(markup);
+        });
+
+        // Find and remove selected table rows
+        $(".delete-row-2").click(function () {
+            $("#analyse tbody").find('input[name="record"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
+    // add data cho table design
+    $(document).ready(function () {
+        $(".add-row-3").click(function () {
+            var wbs = $(".wbs-3").val();
+            var taskname = $(".taskname-3").val();
+            var duration = $(".duration-3").val();
+            var startdate = $(".startdate-3").val();
+            var finishdate = $(".finishdate-3").val();
+            var assign = $(".assign-3").val();
+            var markup = "<tr><td>" + wbs + "</td><td>" + taskname + "</td><td>" + duration + "</td><td>" + startdate + "</td><td>" + finishdate + "</td><td>" + assign + "</td><td><input type='checkbox' name='record'></td></tr>";
+            $("#design tbody").append(markup);
+        });
+
+        // Find and remove selected table rows
+        $(".delete-row-3").click(function () {
+            $("#design tbody").find('input[name="record"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
+    // add data cho table development
+    $(document).ready(function () {
+        $(".add-row-4").click(function () {
+            var wbs = $(".wbs-4").val();
+            var taskname = $(".taskname-4").val();
+            var duration = $(".duration-4").val();
+            var startdate = $(".startdate-4").val();
+            var finishdate = $(".finishdate-4").val();
+            var assign = $(".assign-4").val();
+            var markup = "<tr><td>" + wbs + "</td><td>" + taskname + "</td><td>" + duration + "</td><td>" + startdate + "</td><td>" + finishdate + "</td><td>" + assign + "</td><td><input type='checkbox' name='record'></td></tr>";
+            $("#development tbody").append(markup);
+        });
+
+        // Find and remove selected table rows
+        $(".delete-row-4").click(function () {
+            $("#development tbody").find('input[name="record"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
+    // add data cho table testing
+    $(document).ready(function () {
+        $(".add-row-5").click(function () {
+            var wbs = $(".wbs-5").val();
+            var taskname = $(".taskname-5").val();
+            var duration = $(".duration-5").val();
+            var startdate = $(".startdate-5").val();
+            var finishdate = $(".finishdate-5").val();
+            var assign = $(".assign-5").val();
+            var markup = "<tr><td>" + wbs + "</td><td>" + taskname + "</td><td>" + duration + "</td><td>" + startdate + "</td><td>" + finishdate + "</td><td>" + assign + "</td><td><input type='checkbox' name='record'></td></tr>";
+            $("#testing tbody").append(markup);
+        });
+
+        // Find and remove selected table rows
+        $(".delete-row-5").click(function () {
+            $("#testing tbody").find('input[name="record"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
+    // add data cho table deployment
+    $(document).ready(function () {
+        $(".add-row-6").click(function () {
+            var wbs = $(".wbs-6").val();
+            var taskname = $(".taskname-6").val();
+            var duration = $(".duration-6").val();
+            var startdate = $(".startdate-6").val();
+            var finishdate = $(".finishdate-6").val();
+            var assign = $(".assign-6").val();
+            var markup = "<tr><td>" + wbs + "</td><td>" + taskname + "</td><td>" + duration + "</td><td>" + startdate + "</td><td>" + finishdate + "</td><td>" + assign + "</td><td><input type='checkbox' name='record'></td></tr>";
+            $("#deployment tbody").append(markup);
+        });
+
+        // Find and remove selected table rows
+        $(".delete-row-6").click(function () {
+            $("#deployment tbody").find('input[name="record"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
+    // add data cho table maintenance
+    $(document).ready(function () {
+        $(".add-row-7").click(function () {
+            var wbs = $(".wbs-7").val();
+            var taskname = $(".taskname-7").val();
+            var duration = $(".duration-7").val();
+            var startdate = $(".startdate-7").val();
+            var finishdate = $(".finishdate-7").val();
+            var assign = $(".assign-7").val();
+            var markup = "<tr><td>" + wbs + "</td><td>" + taskname + "</td><td>" + duration + "</td><td>" + startdate + "</td><td>" + finishdate + "</td><td>" + assign + "</td><td><input type='checkbox' name='record'></td></tr>";
+            $("#maintenance tbody").append(markup);
+        });
+
+        // Find and remove selected table rows
+        $(".delete-row-7").click(function () {
+            $("#maintenance tbody").find('input[name="record"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
+</script>

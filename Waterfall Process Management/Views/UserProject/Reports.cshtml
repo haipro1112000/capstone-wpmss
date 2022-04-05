@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_UserProjectMaster.cshtml";
+    @* sweetalert *@
+    <script src="~/Assets/sweetalert2-11.4.7/package/dist/sweetalert2.all.min.js"></script>
+
+    <link href="~/Assets/css/UserProject/Reports.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <!--------------------------------------------------------- CONTENT ----------------------------------------------------------->
+    <div class="header_content">
+        <div class="header_btnleft">
+            <div>
+                <h2>You can export the report by:</h2>
+                <div class="report-week-month">
+                    <a href="">Weekly</a>
+                    <a href="">Monthly</a>
+                </div>
+            </div>
+        </div>
+        <div class="header_btnright">
+            <div class="header_export">Export File</div>
+        </div>
+    </div>
+
+    <div class="body-reports">
+        <!-- enter report info basic-->
+        <div class="content">
+            <h2 class="content_title">Weekly Report</h2>
+            <form action="#">
+                <div>
+                    <label for="fullName">Full Name</label>
+                    <input type="text" name="fullName" placeholder="Quang Hiếu">
+                </div>
+                <div>
+                    <label for="position">Role</label>
+                    <input type="text" name="position" placeholder="Project Manager">
+                </div>
+                <div>
+                    <label for="projectname">Project Name</label>
+                    <input type="text" name="projectname" placeholder="Waterfall Manager">
+                </div>
+                <div>
+                    <label for="startday">Start Date</label>
+                    <input type="text" name="startdau" placeholder="21/03/2022">
+                </div>
+                <div>
+                    <label for="endday">End Date</label>
+                    <input type="text" name="endday" placeholder="21/06/2022">
+                </div>
+                <div class="label_des">
+                    <label for="describeproject">Describe Project</label>
+                    <textarea type="text" style="width: 90%;" name="describeproject" placeholder="project management in 7 steps of the waterfall process"> </textarea>
+                </div>
+            </form>
+        </div>
+        <!-- END enter report info basic-->
+        <!-- ---------------------------------------------sidebar-------------------------------- -->
+        <!--table-->
+        <div class="sidebar">
+            <table class="table">
+                <thead>
+                    <tr class="header-table">
+                        <th style="width: 10%;">Id</th>
+                        <th style="width: 10%;">TaskName</th>
+                        <th style="width: 10%;">Start Day</th>
+                        <th style="width: 10%;">End Day</th>
+                        <th style="width: 10%;">Duration</th>
+                        <th style="width: 10%;">Status</th>
+                        <th style="width: 10%; text-align: center;">Solution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>CODE FE “Login”</td>
+                        <td>30/03/2022</td>
+                        <td>03/04/2022</td>
+                        <td>3 Days</td>
+                        <td>Done</td>
+                        <td>
+                            <input type="text" style="width:100%" placeholder="Enter solution">
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <!-- end table -->
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable({
+            ordering: false,
+            searching: false,
+            lengthMenu: [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+        });
+    });
+</script>
+

@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "MemberManage";
+    Layout = "~/Views/Shared/_UserProjectMaster.cshtml";
+    @* sweetalert *@
+    <script src="~/Assets/sweetalert2-11.4.7/package/dist/sweetalert2.all.min.js"></script>
+
+    <link href="~/Assets/css/UserProject/MemberManage.css" rel="stylesheet" />
+
+}
+<div id="container">
+    <!--------------------------------------------------------- CONTENT ----------------------------------------------------------->
+    <div id="content">
+        <!-- <h1>Account Manage</h1> -->
+        <form action="#">
+            <div>
+                <label for="projectManage">Project Manage</label>
+                <select name="projectManage" class="content-project">
+                    <option>Quang Hiếu</option>
+                    <option>Nguyễn Hải</option>
+                    <option>Bảo Hoài</option>
+                    <option>Nguyễn Long</option>
+                    <option>Nguyễn Trí</option>
+                </select>
+            </div>
+            <div>
+                <label for="projectManage">Project Manage</label>
+                <select name="projectManage " class="content-project">
+                    <option>Pm</option>
+                    <option>Developer</option>
+                    <option>Tester</option>
+
+                </select>
+            </div>
+            <div class="content__tools">
+                <button>Add</button>
+            </div>
+        </form>
+    </div>
+    <!--------------------------------------------------------- SIDEBAR ----------------------------------------------------------->
+    <div id="sidebar">
+        <div class="sidebar__search">
+            <input type="text" id="search" placeholder="Enter user name...">
+            <button type="submit" id="btn-search">Search</button>
+        </div>
+        <table id="AccountTable" class="table table-striped table-hover">
+            <thead>
+                <tr class="header-table">
+                    <th style="width: 20%;">Id</th>
+                    <th style="width: 60%;">User Name</th>
+                    <th style="width: 20%;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><a href="#">Quang Hiếu</a></td>
+                    <td>
+                        <a href="#" class="delete" title="Delete" data-toggle="tooltip">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

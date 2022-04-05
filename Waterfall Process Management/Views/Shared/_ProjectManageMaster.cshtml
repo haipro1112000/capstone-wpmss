@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "ProjectManageDetail";
+    Layout = "~/Views/Shared/_UserProjectMaster.cshtml";
+    @* sweetalert *@
+    <script src="~/Assets/sweetalert2-11.4.7/package/dist/sweetalert2.all.min.js"></script>
+
+    <link href="~/Assets/css/UserProject/ProjectManageDetail.css" rel="stylesheet" />
+
+}
+
+<nav class="header__menu-Multilevel">
+    <ul>
+        <li><a>@Html.ActionLink("Requirement", "Requirement", "UserProject")</a></li>
+        <li>
+            <a >@Html.ActionLink("Analys", "Analys", "UserProject")</a>
+            <ul class="subNav">
+                <li><a href="#">Requirements</a></li>
+                <li><a href="#">Architecture</a></li>
+                <li><a href="#">Technologies</a></li>
+                <li><a href="">@Html.ActionLink("Project Plan", "ProjectPlan", "UserProject")</a></li>
+            </ul>
+        </li>
+        <li><a>@Html.ActionLink("Design", "Design", "UserProject")</a></li>
+        <li><a>@Html.ActionLink("Development", "Development", "UserProject")</a></li>
+        <li><a>@Html.ActionLink("Testing", "Testing", "UserProject")</a></li>
+        <li><a>@Html.ActionLink("Deployment", "Deployment", "UserProject")</a></li>
+        <li><a>@Html.ActionLink("Maintenance", "Maintenance", "UserProject")</a></li>
+    </ul>
+</nav>
+<div >
+    @RenderBody()
+</div>
