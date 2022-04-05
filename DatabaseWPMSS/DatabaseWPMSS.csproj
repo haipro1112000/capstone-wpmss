@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D3EA5C66-E129-4AB5-94EE-F6FCB24F60C4}</ProjectGuid>
+    <ProjectGuid>{56527034-21E9-4550-BAA6-3ACC2FD45C8C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DatabaseWPMSS</RootNamespace>

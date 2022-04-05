@@ -27,7 +27,7 @@ namespace DatabaseWPMSS
         public string Project_Type { get; set; }
 
         [Required]
-        [StringLength(40)]
+        [StringLength(20)]
         public string Project_Manager { get; set; }
 
         [Column(TypeName = "date")]

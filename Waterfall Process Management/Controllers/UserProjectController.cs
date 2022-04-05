@@ -40,7 +40,7 @@ namespace Waterfall_Process_Management.Controllers
             {
                 Session.Remove("error");
                 Session.Add("Role_In_Project", role);
-                return RedirectToAction("ProjectManageDetail");
+                return RedirectToAction("Testing");
             }
 
 
@@ -100,7 +100,7 @@ namespace Waterfall_Process_Management.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Tester");
+                        return RedirectToAction("Testing");
                     }
                 }
             }
@@ -108,14 +108,75 @@ namespace Waterfall_Process_Management.Controllers
         }
         public ActionResult Analys()
         {
+
+            ROLE_IN_PROJECT role = (ROLE_IN_PROJECT)Session["Role_In_Project"];
+            if (role == null)
+            {
+                return RedirectToAction("ProjectManage", "Users");
+            }
+            else
+            {
+                if (role.Role_ID != 1)
+                {
+                    Session.Add("error", "1");
+
+                    if (role.Role_ID == 2)
+                    {
+                        return RedirectToAction("Development");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Testing");
+                    }
+                }
+            }
             return View();
         }
         public ActionResult Design()
         {
+
+            ROLE_IN_PROJECT role = (ROLE_IN_PROJECT)Session["Role_In_Project"];
+            if (role == null)
+            {
+                return RedirectToAction("ProjectManage", "Users");
+            }
+            else
+            {
+                if (role.Role_ID != 1)
+                {
+                    Session.Add("error", "1");
+
+                    if (role.Role_ID == 2)
+                    {
+                        return RedirectToAction("Development");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Testing");
+                    }
+                }
+            }
             return View();
         }
         public ActionResult Development()
         {
+            ROLE_IN_PROJECT role = (ROLE_IN_PROJECT)Session["Role_In_Project"];
+            if (role == null)
+            {
+                return RedirectToAction("ProjectManage", "Users");
+            }
+            else
+            {
+                if (role.Role_ID != 1)
+                {
+                    
+                    if (role.Role_ID == 3)
+                    {
+                        Session.Add("error", "1");
+                        return RedirectToAction("Testing");
+                    }
+                }
+            }
             string error = (string)Session["error"];
             if(error != null)
             {
@@ -131,6 +192,23 @@ namespace Waterfall_Process_Management.Controllers
         }
         public ActionResult Testing()
         {
+            ROLE_IN_PROJECT role = (ROLE_IN_PROJECT)Session["Role_In_Project"];
+            if (role == null)
+            {
+                return RedirectToAction("ProjectManage", "Users");
+            }
+            else
+            {
+                if (role.Role_ID != 1)
+                {
+                   
+                    if (role.Role_ID == 2)
+                    {
+                        Session.Add("error", "1");
+                        return RedirectToAction("Development");
+                    }
+                }
+            }
             string error = (string)Session["error"];
             if (error != null)
             {
@@ -144,10 +222,54 @@ namespace Waterfall_Process_Management.Controllers
         }
         public ActionResult Deployment()
         {
+
+            ROLE_IN_PROJECT role = (ROLE_IN_PROJECT)Session["Role_In_Project"];
+            if (role == null)
+            {
+                return RedirectToAction("ProjectManage", "Users");
+            }
+            else
+            {
+                if (role.Role_ID != 1)
+                {
+                    Session.Add("error", "1");
+
+                    if (role.Role_ID == 2)
+                    {
+                        return RedirectToAction("Development");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Testing");
+                    }
+                }
+            }
             return View();
         }
         public ActionResult Maintenance()
         {
+
+            ROLE_IN_PROJECT role = (ROLE_IN_PROJECT)Session["Role_In_Project"];
+            if (role == null)
+            {
+                return RedirectToAction("ProjectManage", "Users");
+            }
+            else
+            {
+                if (role.Role_ID != 1)
+                {
+                    Session.Add("error", "1");
+
+                    if (role.Role_ID == 2)
+                    {
+                        return RedirectToAction("Development");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Testing");
+                    }
+                }
+            }
             return View();
         }
 
@@ -160,7 +282,27 @@ namespace Waterfall_Process_Management.Controllers
                 Response.Redirect("https://localhost:44381/Authentication/Login");
             }
             ViewBag.User = Session["user"];
+            ROLE_IN_PROJECT role = (ROLE_IN_PROJECT)Session["Role_In_Project"];
+            if (role == null)
+            {
+                return RedirectToAction("ProjectManage", "Users");
+            }
+            else
+            {
+                if (role.Role_ID != 1)
+                {
+                    Session.Add("error", "1");
 
+                    if (role.Role_ID == 2)
+                    {
+                        return RedirectToAction("Development");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Testing");
+                    }
+                }
+            }
             return View();
         }
 
@@ -172,6 +314,12 @@ namespace Waterfall_Process_Management.Controllers
             }
             ViewBag.User = Session["user"];
 
+            ROLE_IN_PROJECT role = (ROLE_IN_PROJECT)Session["Role_In_Project"];
+            if (role == null)
+            {
+                return RedirectToAction("ProjectManage", "Users");
+            }
+           
             return View();
         }
 
@@ -188,6 +336,28 @@ namespace Waterfall_Process_Management.Controllers
 
         public ActionResult ProjectPlan()
         {
+
+            ROLE_IN_PROJECT role = (ROLE_IN_PROJECT)Session["Role_In_Project"];
+            if (role == null)
+            {
+                return RedirectToAction("ProjectManage", "Users");
+            }
+            else
+            {
+                if (role.Role_ID != 1)
+                {
+                    Session.Add("error", "1");
+
+                    if (role.Role_ID == 2)
+                    {
+                        return RedirectToAction("Development");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Testing");
+                    }
+                }
+            }
             return View();
         }
 

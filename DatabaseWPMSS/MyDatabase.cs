@@ -33,7 +33,7 @@ namespace DatabaseWPMSS
 
             modelBuilder.Entity<PROJECT>()
                 .Property(e => e.Project_Manager)
-                .IsUnicode(true);
+                .IsUnicode(false);
 
             modelBuilder.Entity<ROLE_ACCOUNT>()
                 .Property(e => e.Role_Name)

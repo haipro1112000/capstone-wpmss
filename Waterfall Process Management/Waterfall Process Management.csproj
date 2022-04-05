@@ -426,7 +426,7 @@
       <Name>DatabaseModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\DatabaseWPMSS\DatabaseWPMSS.csproj">
-      <Project>{d3ea5c66-e129-4ab5-94ee-f6fcb24f60c4}</Project>
+      <Project>{56527034-21e9-4550-baa6-3acc2fd45c8c}</Project>
       <Name>DatabaseWPMSS</Name>
     </ProjectReference>
   </ItemGroup>

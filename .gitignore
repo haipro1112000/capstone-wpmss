@@ -1,2 +1,8 @@
 node_modules
 packages
+DatabaseWPMSS/obj/Debug
+DatabaseWPMSS/bin/Debug
+DatabaseModels/bin/Debug
+DatabaseModels/obj/Debug
+Waterfall Process Management/obj/Debug
+Waterfall Process Management/bin/Debug
